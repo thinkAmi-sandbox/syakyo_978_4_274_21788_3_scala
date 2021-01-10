@@ -31,6 +31,9 @@ class MoneyTest extends AnyFunSuite {
 
     // 三角測量用のコード
     assert(new Dollar(5) !== (new Dollar(6)))
+
+    assert(new Franc(5) === (new Franc(5)))
+    assert(new Franc(5) !== (new Franc(6)))
   }
 
   test("Francのテスト") {

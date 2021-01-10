@@ -10,17 +10,14 @@ class Dollar(
               // (Javaの場合、同一クラスであれば、別インスタンスのprivateにアクセスできる模様)
               // そのため、アクセス修飾子のprivate[T]を使用して、同一クラスならアクセスできるようにする
               // http://www.ne.jp/asahi/hishidama/home/tech/scala/class.html#h_access_modifiers
-              private[Dollar] val amount: Int
-            ) {
+              //
+              // Moneyの子クラスにするため、override val で基本コンストラクタ(primary constructor)も定義
+              // [Q]この方法以外で、Scalaっぽい書き方はできるのか？
+              // https://stackoverflow.com/questions/6497059/scala-inherit-parameterized-constructor
+              override val amount: Int
+            ) extends Money(amount) {
   def times(multiplier: Int): Dollar = {
     // Scalaなのでreturnを省略
     new Dollar(this.amount * multiplier)
-  }
-
-  override def equals(obj: Any): Boolean = {
-    // Scalaのキャスト
-    // https://qiita.com/cupper/items/9028a5a108deb8706717
-    val dollar = obj.asInstanceOf[Dollar]
-    this.amount == dollar.amount
   }
 }
