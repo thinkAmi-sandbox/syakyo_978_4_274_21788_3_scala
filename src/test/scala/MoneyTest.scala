@@ -43,4 +43,9 @@ class MoneyTest extends AnyFunSuite {
     assert(Money.franc(10) === five.times(2))
     assert(Money.franc(15) === five.times(3))
   }
+
+  test("Currency") {
+    assert(Money.dollar(1).currency() === "USD")
+    assert(Money.franc(1).currency() === "CHF")
+  }
 }

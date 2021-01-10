@@ -2,8 +2,11 @@ package com.thinkami.tdd
 
 abstract class Money(
              // 自クラスと継承クラスで見えるようにする
-             protected[Money] val amount: Int
+             protected[Money] val amount: Int,
+             // メソッドとメンバ変数で同じ名前を使えないので、別の名前にしている
+             protected[Money] val cur: String,
            ) {
+
   override def equals(obj: Any): Boolean = {
     // Scalaのキャスト
     // https://qiita.com/cupper/items/9028a5a108deb8706717
@@ -19,6 +22,8 @@ abstract class Money(
   // 抽象メソッドとして用意 (=~ がないため)
   // http://www.ne.jp/asahi/hishidama/home/tech/scala/class.html#h_abstract_member
   def times(multiplier: Int): Money
+
+  def currency(): String = this.cur
 }
 
 // Scalaには静的(static)メソッドがない
@@ -27,10 +32,10 @@ abstract class Money(
 // https://www.ne.jp/asahi/hishidama/home/tech/scala/object.html#h_companion_object
 object Money {
   def dollar(amount: Int): Dollar = {
-    new Dollar(amount)
+    new Dollar(amount, "USD")
   }
 
   def franc(amount: Int): Franc = {
-    new Franc(amount)
+    new Franc(amount, "CHF")
   }
 }

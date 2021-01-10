@@ -14,10 +14,12 @@ class Dollar(
               // Moneyの子クラスにするため、override val で基本コンストラクタ(primary constructor)も定義
               // [Q]この方法以外で、Scalaっぽい書き方はできるのか？
               // https://stackoverflow.com/questions/6497059/scala-inherit-parameterized-constructor
-              override val amount: Int
-            ) extends Money(amount) {
+              override val amount: Int,
+              override val cur: String,
+            ) extends Money(amount, cur) {
+
   def times(multiplier: Int): Money = {
     // Scalaなのでreturnを省略
-    new Dollar(this.amount * multiplier)
+    Money.dollar(this.amount * multiplier)
   }
 }

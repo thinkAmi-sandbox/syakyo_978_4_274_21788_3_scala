@@ -1,10 +1,11 @@
 package com.thinkami.tdd
 
 class Franc(
-             override val amount: Int
-           ) extends Money(amount) {
+             override val amount: Int,
+             override val cur: String
+           ) extends Money(amount, cur) {
 
   def times(multiplier: Int): Money = {
-    new Franc(this.amount * multiplier)
+    Money.franc(this.amount * multiplier)
   }
 }
