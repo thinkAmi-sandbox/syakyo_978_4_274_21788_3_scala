@@ -34,6 +34,8 @@ class MoneyTest extends AnyFunSuite {
 
     assert(new Franc(5) === (new Franc(5)))
     assert(new Franc(5) !== (new Franc(6)))
+
+    assert(new Franc(5) !== new Dollar(5))
   }
 
   test("Francのテスト") {
