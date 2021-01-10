@@ -8,7 +8,7 @@ import org.scalatest.funsuite.AnyFunSuite
 class MoneyTest extends AnyFunSuite {
   test("掛け算") {
     // Dollarは同じパッケージなのでimportしなくても使える
-    val five = new Dollar(5)
+    val five = Money.dollar(5)
 
     // `===` はScalaにないため、使用しているものによって定義されている
     // https://stackoverflow.com/questions/39490236/difference-between-and-in-scala-spark
@@ -19,28 +19,28 @@ class MoneyTest extends AnyFunSuite {
     // assert(1 === 2)
     // =>  [info]   1 did not equal 2 (MoneyTest.scala:33)
 
-    assert(new Dollar(10) === five.times(2))
+    assert(Money.dollar((10)) === five.times(2))
 
-    assert(new Dollar(15) === five.times(3))
+    assert(Money.dollar(15) === five.times(3))
   }
 
   test("等価性") {
     // Scalaの場合、equals()を実装していないクラスは、JavaのObject.equals()を呼び出すので、コンパイルエラーにはならない
     // https://qiita.com/hysdsk/items/b37c4cf5ee21bbf1c494
-    assert(new Dollar(5) === (new Dollar(5)))
+    assert(Money.dollar(5) === (Money.dollar(5)))
 
     // 三角測量用のコード
-    assert(new Dollar(5) !== (new Dollar(6)))
+    assert(Money.dollar(5) !== (Money.dollar(6)))
 
-    assert(new Franc(5) === (new Franc(5)))
-    assert(new Franc(5) !== (new Franc(6)))
+    assert(Money.franc(5) === (Money.franc(5)))
+    assert(Money.franc(5) !== (Money.franc(6)))
 
-    assert(new Franc(5) !== new Dollar(5))
+    assert(Money.franc(5) !== Money.dollar(5))
   }
 
   test("Francのテスト") {
-    val five = new Franc(5)
-    assert(new Franc(10) === five.times(2))
-    assert(new Franc(15) === five.times(3))
+    val five = Money.franc(5)
+    assert(Money.franc(10) === five.times(2))
+    assert(Money.franc(15) === five.times(3))
   }
 }

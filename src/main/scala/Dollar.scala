@@ -16,7 +16,7 @@ class Dollar(
               // https://stackoverflow.com/questions/6497059/scala-inherit-parameterized-constructor
               override val amount: Int
             ) extends Money(amount) {
-  def times(multiplier: Int): Dollar = {
+  def times(multiplier: Int): Money = {
     // Scalaなのでreturnを省略
     new Dollar(this.amount * multiplier)
   }

@@ -4,7 +4,7 @@ class Franc(
              override val amount: Int
            ) extends Money(amount) {
 
-  def times(multiplier: Int): Franc = {
+  def times(multiplier: Int): Money = {
     new Franc(this.amount * multiplier)
   }
 }
