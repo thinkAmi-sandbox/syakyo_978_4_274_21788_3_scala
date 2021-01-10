@@ -8,4 +8,11 @@ class Dollar(
     // Scalaなのでreturnを省略
     new Dollar(this.amount * multiplier)
   }
+
+  override def equals(obj: Any): Boolean = {
+    // Scalaのキャスト
+    // https://qiita.com/cupper/items/9028a5a108deb8706717
+    val dollar = obj.asInstanceOf[Dollar]
+    this.amount == dollar.amount
+  }
 }

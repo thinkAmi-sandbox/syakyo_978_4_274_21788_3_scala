@@ -20,4 +20,13 @@ class MoneyTest extends AnyFunSuite {
     product = five.times(3)
     assert(product.amount === 15)
   }
+
+  test("等価性") {
+    // Scalaの場合、equals()を実装していないクラスは、JavaのObject.equals()を呼び出すので、コンパイルエラーにはならない
+    // https://qiita.com/hysdsk/items/b37c4cf5ee21bbf1c494
+    assert(new Dollar(5) == (new Dollar(5)))
+
+    // 三角測量用のコード
+    assert(new Dollar(5) != (new Dollar(6)))
+  }
 }
