@@ -9,7 +9,15 @@ class MoneyTest extends AnyFunSuite {
   test("掛け算") {
     // Dollarは同じパッケージなのでimportしなくても使える
     val five = new Dollar(5)
-    five.times(2)
-    assert(10 === five.amount)
+
+    // 再代入できるように、varを使う
+    var product = five.times(2)
+
+    // `===` はScalaにないため、使用しているものによって定義されている
+    // https://stackoverflow.com/questions/39490236/difference-between-and-in-scala-spark
+    assert(product.amount === 10)
+
+    product = five.times(3)
+    assert(product.amount === 15)
   }
 }
