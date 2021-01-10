@@ -32,4 +32,10 @@ class MoneyTest extends AnyFunSuite {
     // 三角測量用のコード
     assert(new Dollar(5) !== (new Dollar(6)))
   }
+
+  test("Francのテスト") {
+    val five = new Franc(5)
+    assert(new Franc(10) === five.times(2))
+    assert(new Franc(15) === five.times(3))
+  }
 }
