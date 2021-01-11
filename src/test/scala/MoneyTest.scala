@@ -41,12 +41,33 @@ class MoneyTest extends AnyFunSuite {
   }
 
   test("SimpleAddition") {
-
     val five = Money.dollar(5)
     val sum = five.plus(five)
 
     val bank = new Bank()
     val reduced = bank.reduce(sum, "USD")
     assert(Money.dollar(10) === reduced)
+  }
+
+  test("PlustReturnsSum") {
+    val five = Money.dollar(5)
+    val result = five.plus(five)
+    val sum = result.asInstanceOf[Sum]
+
+    assert(five === sum.augend)  // 被加算数(augend)
+    assert(five === sum.addend)
+  }
+
+  test("ReduceSum") {
+    val sum = new Sum(Money.dollar(3), Money.dollar(4))
+    val bank = new Bank()
+    val result = bank.reduce(sum, "USD")
+    assert(Money.dollar(7) === result)
+  }
+
+  test("ReduceMoney") {
+    val bank = new Bank()
+    val result = bank.reduce(Money.dollar(1), "USD")
+    assert(Money.dollar(1) === result)
   }
 }

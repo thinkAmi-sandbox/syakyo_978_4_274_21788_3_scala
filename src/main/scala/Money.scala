@@ -2,7 +2,9 @@ package com.thinkami.tdd
 
 class Money(
              // 自クラスと継承クラスで見えるようにする
-             protected[Money] val amount: Int,
+             // Javaのprotectedと同じようにするため、パッケージの末尾を指定
+             // http://www.ne.jp/asahi/hishidama/home/tech/scala/class.html#h_access_modifiers
+             protected[tdd] val amount: Int,
              // メソッドとメンバ変数で同じ名前を使えないので、別の名前にしている
              protected[Money] val cur: String,
            ) extends Expression {
@@ -28,8 +30,10 @@ class Money(
   def currency(): String = this.cur
 
   def plus(addend: Money): Expression = {
-    new Money(this.amount+ addend.amount, this.cur)
+    new Sum(this, addend)
   }
+
+  def reduce(to: String) = this
 }
 
 // Scalaには静的(static)メソッドがない
