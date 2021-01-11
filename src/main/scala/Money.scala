@@ -23,13 +23,13 @@ class Money(
 
   // 抽象メソッドとして用意 (=~ がないため)
   // http://www.ne.jp/asahi/hishidama/home/tech/scala/class.html#h_abstract_member
-  def times(multiplier: Int): Money = {
+  def times(multiplier: Int): Expression = {
     new Money(amount * multiplier, this.cur)
   }
 
   def currency(): String = this.cur
 
-  def plus(addend: Money): Expression = {
+  override def plus(addend: Expression): Expression = {
     new Sum(this, addend)
   }
 

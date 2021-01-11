@@ -1,12 +1,14 @@
 package com.thinkami.tdd
 
 class Sum(
-         val augend: Money,
-         val addend: Money,
+         val augend: Expression,
+         val addend: Expression,
          ) extends Expression {
 
   def reduce(bank: Bank, to: String) = {
-    val amount = augend.amount + addend.amount
+    val amount = augend.reduce(bank, to).amount + addend.reduce(bank, to).amount
     new Money(amount, to)
   }
+
+  def plus(addend: Expression): Expression = null
 }
