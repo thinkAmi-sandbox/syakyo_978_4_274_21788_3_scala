@@ -33,11 +33,11 @@ class Money(
 // コンパニオンオブジェクト = クラスの共通の処理・操作
 // https://www.ne.jp/asahi/hishidama/home/tech/scala/object.html#h_companion_object
 object Money {
-  def dollar(amount: Int): Dollar = {
-    new Dollar(amount, "USD")
+  def dollar(amount: Int): Money = {
+    new Money(amount, "USD")
   }
 
-  def franc(amount: Int): Franc = {
-    new Franc(amount, "CHF")
+  def franc(amount: Int): Money = {
+    new Money(amount, "CHF")
   }
 }

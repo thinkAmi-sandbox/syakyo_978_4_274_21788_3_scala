@@ -6,7 +6,7 @@ package com.thinkami.tdd
 import org.scalatest.funsuite.AnyFunSuite
 
 class MoneyTest extends AnyFunSuite {
-  test("掛け算") {
+  test("Multiplication") {
     // Dollarは同じパッケージなのでimportしなくても使える
     val five = Money.dollar(5)
 
@@ -24,7 +24,7 @@ class MoneyTest extends AnyFunSuite {
     assert(Money.dollar(15) === five.times(3))
   }
 
-  test("等価性") {
+  test("Equality") {
     // Scalaの場合、equals()を実装していないクラスは、JavaのObject.equals()を呼び出すので、コンパイルエラーにはならない
     // https://qiita.com/hysdsk/items/b37c4cf5ee21bbf1c494
     assert(Money.dollar(5) === (Money.dollar(5)))
@@ -32,24 +32,11 @@ class MoneyTest extends AnyFunSuite {
     // 三角測量用のコード
     assert(Money.dollar(5) !== (Money.dollar(6)))
 
-    assert(Money.franc(5) === (Money.franc(5)))
-    assert(Money.franc(5) !== (Money.franc(6)))
-
     assert(Money.franc(5) !== Money.dollar(5))
-  }
-
-  test("Francのテスト") {
-    val five = Money.franc(5)
-    assert(Money.franc(10) === five.times(2))
-    assert(Money.franc(15) === five.times(3))
   }
 
   test("Currency") {
     assert(Money.dollar(1).currency() === "USD")
     assert(Money.franc(1).currency() === "CHF")
-  }
-
-  test("DifferentClassEquality") {
-    assert(new Money(10, "CHF") === new Franc(10, "CHF"))
   }
 }
