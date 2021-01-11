@@ -17,9 +17,4 @@ class Dollar(
               override val amount: Int,
               override val cur: String,
             ) extends Money(amount, cur) {
-
-  def times(multiplier: Int): Money = {
-    // Scalaなのでreturnを省略
-    Money.dollar(this.amount * multiplier)
-  }
 }

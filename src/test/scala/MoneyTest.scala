@@ -48,4 +48,8 @@ class MoneyTest extends AnyFunSuite {
     assert(Money.dollar(1).currency() === "USD")
     assert(Money.franc(1).currency() === "CHF")
   }
+
+  test("DifferentClassEquality") {
+    assert(new Money(10, "CHF") === new Franc(10, "CHF"))
+  }
 }

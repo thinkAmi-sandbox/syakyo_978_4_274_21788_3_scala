@@ -1,6 +1,6 @@
 package com.thinkami.tdd
 
-abstract class Money(
+class Money(
              // 自クラスと継承クラスで見えるようにする
              protected[Money] val amount: Int,
              // メソッドとメンバ変数で同じ名前を使えないので、別の名前にしている
@@ -15,13 +15,15 @@ abstract class Money(
       this.amount == money.amount
         // クラスが同じなのかを確認
         // https://qiita.com/mtoyoshi/items/6ebcce6e2abdaf41a05e
-      && getClass == obj.getClass
+      && this.currency() == money.currency()
     )
   }
 
   // 抽象メソッドとして用意 (=~ がないため)
   // http://www.ne.jp/asahi/hishidama/home/tech/scala/class.html#h_abstract_member
-  def times(multiplier: Int): Money
+  def times(multiplier: Int): Money = {
+    new Money(amount * multiplier, this.cur)
+  }
 
   def currency(): String = this.cur
 }
