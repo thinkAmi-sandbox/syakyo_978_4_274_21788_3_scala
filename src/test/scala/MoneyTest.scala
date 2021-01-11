@@ -39,4 +39,14 @@ class MoneyTest extends AnyFunSuite {
     assert(Money.dollar(1).currency() === "USD")
     assert(Money.franc(1).currency() === "CHF")
   }
+
+  test("SimpleAddition") {
+
+    val five = Money.dollar(5)
+    val sum = five.plus(five)
+
+    val bank = new Bank()
+    val reduced = bank.reduce(sum, "USD")
+    assert(Money.dollar(10) === reduced)
+  }
 }

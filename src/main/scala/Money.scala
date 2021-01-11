@@ -5,7 +5,7 @@ class Money(
              protected[Money] val amount: Int,
              // メソッドとメンバ変数で同じ名前を使えないので、別の名前にしている
              protected[Money] val cur: String,
-           ) {
+           ) extends Expression {
 
   override def equals(obj: Any): Boolean = {
     // Scalaのキャスト
@@ -26,6 +26,10 @@ class Money(
   }
 
   def currency(): String = this.cur
+
+  def plus(addend: Money): Expression = {
+    new Money(this.amount+ addend.amount, this.cur)
+  }
 }
 
 // Scalaには静的(static)メソッドがない
