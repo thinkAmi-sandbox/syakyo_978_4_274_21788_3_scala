@@ -33,7 +33,10 @@ class Money(
     new Sum(this, addend)
   }
 
-  def reduce(to: String) = this
+  def reduce(bank: Bank, to: String) = {
+    val rate = bank.rate(this.cur, to)
+    new Money(amount / rate, to)
+  }
 }
 
 // Scalaには静的(static)メソッドがない

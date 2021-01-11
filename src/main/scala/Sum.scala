@@ -5,7 +5,7 @@ class Sum(
          val addend: Money,
          ) extends Expression {
 
-  def reduce(to: String) = {
+  def reduce(bank: Bank, to: String) = {
     val amount = augend.amount + addend.amount
     new Money(amount, to)
   }
